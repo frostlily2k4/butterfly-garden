@@ -1,0 +1,390 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif;
+    background: linear-gradient(
+        135deg,
+        #fce8f3,
+        #eee7ff,
+        #e7f7ef
+    );
+    color: #5d5268;
+    display: flex;
+    justify-content: center;
+    padding: 30px 15px;
+}
+
+/* Main container */
+
+.garden-container {
+    width: 100%;
+    max-width: 850px;
+    text-align: center;
+}
+
+/* Header */
+
+header {
+    margin-bottom: 25px;
+}
+
+header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    color: #8b6f91;
+    margin-bottom: 8px;
+}
+
+header p {
+    font-size: 16px;
+    color: #8d8295;
+}
+
+/* Garden card */
+
+.garden {
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 30px;
+    padding: 30px 25px 25px;
+    box-shadow: 0 15px 40px rgba(120, 90, 130, 0.12);
+    backdrop-filter: blur(10px);
+}
+
+/* Garden title */
+
+.garden-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.garden-title span {
+    color: #d99abb;
+    font-size: 22px;
+}
+
+.garden-title h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    color: #76607d;
+    text-transform: capitalize;
+}
+
+.garden-message {
+    margin-top: 10px;
+    color: #9a8fa0;
+}
+
+/* Garden area */
+
+.garden-area {
+    position: relative;
+    height: 330px;
+    margin-top: 25px;
+    border-radius: 25px;
+    overflow: hidden;
+
+    background: linear-gradient(
+        to bottom,
+        #dff4f3 0%,
+        #e8f5e8 55%,
+        #b9d9a8 55%,
+        #a7cc96 100%
+    );
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    padding-bottom: 35px;
+}
+
+/* Sun */
+
+.garden-area::before {
+    content: "☀️";
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    font-size: 42px;
+}
+
+/* Clouds */
+
+.garden-area::after {
+    content: "☁️     ☁️";
+    position: absolute;
+    top: 35px;
+    left: 35px;
+    font-size: 28px;
+    opacity: 0.75;
+}
+
+/* Grass */
+
+.grass {
+    font-size: 45px;
+    position: relative;
+    z-index: 2;
+    animation: sway 3s ease-in-out infinite;
+}
+
+.grass-2 {
+    margin-left: 35px;
+    animation-delay: 0.5s;
+}
+
+.grass-3 {
+    margin-left: 35px;
+    animation-delay: 1s;
+}
+
+@keyframes sway {
+
+    0%, 100% {
+        transform: rotate(-3deg);
+    }
+
+    50% {
+        transform: rotate(3deg);
+    }
+}
+
+/* Buttons */
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 25px 0;
+    flex-wrap: wrap;
+}
+
+button {
+    border: none;
+    padding: 14px 22px;
+    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+
+    background: #ffffff;
+    color: #7d6684;
+
+    box-shadow: 0 8px 20px rgba(100, 80, 110, 0.12);
+
+    transition: all 0.25s ease;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(100, 80, 110, 0.18);
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+/* Progress */
+
+.progress {
+    background: rgba(255, 255, 255, 0.55);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.progress p {
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.progress-bar {
+    width: 100%;
+    max-width: 500px;
+    height: 12px;
+    background: #e4ddea;
+    border-radius: 20px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(
+        90deg,
+        #e6a8c8,
+        #bda9df
+    );
+    border-radius: 20px;
+    transition: width 0.5s ease;
+}
+
+.progress span {
+    display: block;
+    margin-top: 8px;
+    font-size: 14px;
+    color: #94889b;
+}
+
+/* Footer */
+
+footer {
+    margin-top: 15px;
+    font-size: 13px;
+    color: #9b8fa0;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 20px 10px;
+    }
+
+    header h1 {
+        font-size: 32px;
+    }
+
+    .garden {
+        padding: 25px 15px 20px;
+    }
+
+    .garden-area {
+        height: 280px;
+    }
+
+    .garden-title h2 {
+        font-size: 25px;
+    }
+
+    .actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    button {
+        width: 90%;
+    }
+}
+
+/* 🌷 Growing flowers */
+
+.flower {
+    position: absolute;
+    font-size: 42px;
+    z-index: 3;
+
+    animation: growFlower 0.8s ease-out,
+               flowerSway 3s ease-in-out infinite;
+
+    transform-origin: bottom center;
+}
+
+@keyframes growFlower {
+
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    70% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes flowerSway {
+
+    0%, 100% {
+        rotate: -3deg;
+    }
+
+    50% {
+        rotate: 3deg;
+    }
+}
+
+
+/* ✨ Water sparkles */
+
+.sparkle {
+    position: absolute;
+    font-size: 18px;
+    z-index: 5;
+
+    animation: sparkleFloat 1.2s ease-out forwards;
+}
+
+@keyframes sparkleFloat {
+
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.5);
+    }
+
+    40% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-50px) scale(1.2);
+    }
+}
+/* 🦋 Flying butterflies */
+
+.butterfly {
+    position: absolute;
+    font-size: 32px;
+    z-index: 10;
+    pointer-events: none;
+
+    animation-name: flyAround;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+
+    filter: drop-shadow(
+        0 4px 5px rgba(100, 70, 100, 0.15)
+    );
+}
+
+
+@keyframes flyAround {
+
+    0% {
+        transform: translate(0, 0) rotate(-8deg);
+    }
+
+    25% {
+        transform: translate(70px, -35px) rotate(8deg);
+    }
+
+    50% {
+        transform: translate(120px, 15px) rotate(-5deg);
+    }
+
+    75% {
+        transform: translate(40px, 60px) rotate(7deg);
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(-8deg);
+    }
+}
