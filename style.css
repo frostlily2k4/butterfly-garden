@@ -388,3 +388,311 @@ footer {
         transform: translate(0, 0) rotate(-8deg);
     }
 }
+
+/* ========================================
+   🦋 MAGICAL OPENING SCREEN
+   ======================================== */
+
+.opening-screen {
+    position: fixed;
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            #40345f 0%,
+            #27213f 45%,
+            #171526 100%
+        );
+
+    transition:
+        opacity 1.2s ease,
+        visibility 1.2s ease;
+}
+
+
+/* When opening disappears */
+
+.opening-screen.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+
+/* Opening content */
+
+.opening-content {
+    position: relative;
+    z-index: 2;
+
+    text-align: center;
+
+    padding: 30px;
+
+    animation: openingAppear 1.8s ease;
+}
+
+
+@keyframes openingAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Butterfly */
+
+.opening-butterfly {
+    font-size: 72px;
+
+    margin-bottom: 15px;
+
+    animation:
+        butterflyFloat 3s ease-in-out infinite,
+        butterflyAppear 1.5s ease;
+}
+
+
+@keyframes butterflyAppear {
+
+    from {
+        opacity: 0;
+        transform: scale(0.4);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+@keyframes butterflyFloat {
+
+    0%, 100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(5deg);
+    }
+}
+
+
+/* Welcome text */
+
+.opening-small {
+    font-size: 15px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    color: #d8c9df;
+
+    margin-bottom: 8px;
+}
+
+
+/* Main title */
+
+.opening-content h1 {
+    font-family: 'Playfair Display', serif;
+
+    font-size: clamp(45px, 8vw, 78px);
+
+    font-weight: 600;
+
+    color: #f9e8f5;
+
+    margin-bottom: 18px;
+
+    text-shadow:
+        0 0 20px rgba(255, 220, 245, 0.25);
+}
+
+
+/* Tagline */
+
+.opening-tagline {
+    font-size: 17px;
+
+    line-height: 1.8;
+
+    color: #cfc3d9;
+
+    margin-bottom: 35px;
+}
+
+
+/* Enter button */
+
+#enterGarden {
+    padding: 16px 32px;
+
+    border: 1px solid rgba(255,255,255,0.25);
+
+    border-radius: 50px;
+
+    background:
+        rgba(255,255,255,0.12);
+
+    color: #fff4fb;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,0.25);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+#enterGarden:hover {
+
+    transform: translateY(-4px);
+
+    background:
+        rgba(255,255,255,0.2);
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.3);
+}
+
+
+/* Little hint */
+
+.opening-hint {
+
+    margin-top: 20px;
+
+    font-size: 12px;
+
+    color: #9f92ac;
+
+    letter-spacing: 1px;
+}
+
+
+/* ✨ Stars */
+
+.opening-stars {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+}
+
+
+.opening-stars span {
+    position: absolute;
+
+    color: #fff3bd;
+
+    font-size: 16px;
+
+    animation: starTwinkle 3s ease-in-out infinite;
+}
+
+
+.opening-stars span:nth-child(1) {
+    top: 15%;
+    left: 15%;
+}
+
+.opening-stars span:nth-child(2) {
+    top: 25%;
+    left: 75%;
+}
+
+.opening-stars span:nth-child(3) {
+    top: 65%;
+    left: 12%;
+}
+
+.opening-stars span:nth-child(4) {
+    top: 72%;
+    left: 82%;
+}
+
+.opening-stars span:nth-child(5) {
+    top: 18%;
+    left: 48%;
+}
+
+.opening-stars span:nth-child(6) {
+    top: 80%;
+    left: 40%;
+}
+
+.opening-stars span:nth-child(7) {
+    top: 45%;
+    left: 90%;
+}
+
+.opening-stars span:nth-child(8) {
+    top: 50%;
+    left: 5%;
+}
+
+
+@keyframes starTwinkle {
+
+    0%, 100% {
+        opacity: 0.2;
+        transform: scale(0.7);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+}
+
+
+/* 📱 Mobile */
+
+@media (max-width: 600px) {
+
+    .opening-content {
+        padding: 20px;
+    }
+
+    .opening-butterfly {
+        font-size: 60px;
+    }
+
+    .opening-content h1 {
+        font-size: 45px;
+    }
+
+    .opening-tagline {
+        font-size: 15px;
+    }
+}

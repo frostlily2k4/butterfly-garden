@@ -2,6 +2,8 @@
 
 const plantBtn = document.getElementById("plantBtn");
 const waterBtn = document.getElementById("waterBtn");
+const openingScreen = document.getElementById("openingScreen");
+const enterGarden = document.getElementById("enterGarden");
 
 const gardenArea = document.querySelector(".garden-area");
 const progressFill = document.querySelector(".progress-fill");
@@ -176,3 +178,11 @@ function createButterfly() {
 
     gardenArea.appendChild(butterfly);
 }
+
+// 🌷 Enter the garden
+
+enterGarden.addEventListener("click", () => {
+
+    openingScreen.classList.add("hide");
+
+});
