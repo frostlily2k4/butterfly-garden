@@ -696,3 +696,70 @@ footer {
         font-size: 15px;
     }
 }
+
+/* 🐈 Wandering Garden Cat */
+
+.garden-cat {
+    position: absolute;
+
+    left: -80px;
+    bottom: 28px;
+
+    font-size: 42px;
+
+    z-index: 8;
+
+    display: none;
+
+    white-space: nowrap;
+
+    filter: drop-shadow(
+        0 4px 4px rgba(80, 60, 80, 0.15)
+    );
+}
+
+
+/* Cat walking from left to right */
+
+.garden-cat.walk-right {
+    display: block;
+
+    animation: catWalkRight 8s linear forwards;
+}
+
+
+/* Cat walking from right to left */
+
+.garden-cat.walk-left {
+    display: block;
+
+    animation: catWalkLeft 8s linear forwards;
+}
+
+
+/* 🐾 Left → Right */
+
+@keyframes catWalkRight {
+
+    from {
+        left: -80px;
+    }
+
+    to {
+        left: 100%;
+    }
+}
+
+
+/* 🐾 Right → Left */
+
+@keyframes catWalkLeft {
+
+    from {
+        left: 100%;
+    }
+
+    to {
+        left: -80px;
+    }
+}

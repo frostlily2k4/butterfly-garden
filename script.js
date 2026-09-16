@@ -1,26 +1,50 @@
 // 🌸 Butterfly Garden
 
+
+// ================================
+// 🌷 GET HTML ELEMENTS
+// ================================
+
 const plantBtn = document.getElementById("plantBtn");
 const waterBtn = document.getElementById("waterBtn");
-const openingScreen = document.getElementById("openingScreen");
-const enterGarden = document.getElementById("enterGarden");
 
 const gardenArea = document.querySelector(".garden-area");
 const progressFill = document.querySelector(".progress-fill");
 const progressText = document.querySelector(".progress span");
 const gardenMessage = document.querySelector(".garden-message");
 
+
+// 🌌 Opening Screen
+
+const openingScreen = document.getElementById("openingScreen");
+const enterGarden = document.getElementById("enterGarden");
+
+
+// 🐈 Cat
+
+const gardenCat = document.getElementById("gardenCat");
+
+
+// ================================
+// 🌱 GARDEN VARIABLES
+// ================================
+
 let flowers = 0;
 let watered = false;
 let butterflies = 0;
 
 
-// 🌷 Plant a flower
+// ================================
+// 🌷 PLANT A FLOWER
+// ================================
+
 plantBtn.addEventListener("click", () => {
 
     if (flowers >= 10) {
+
         gardenMessage.textContent =
             "Your garden is completely bloomed! 🌸🦋";
+
         return;
     }
 
@@ -35,7 +59,10 @@ plantBtn.addEventListener("click", () => {
 });
 
 
-// 🌸 Create flower
+// ================================
+// 🌸 CREATE FLOWER
+// ================================
+
 function createFlower() {
 
     const flower = document.createElement("div");
@@ -51,12 +78,15 @@ function createFlower() {
     ];
 
     flower.textContent =
-        flowersList[Math.floor(Math.random() * flowersList.length)];
+        flowersList[
+            Math.floor(Math.random() * flowersList.length)
+        ];
 
-    // Random position
-    const randomLeft = Math.random() * 85 + 5;
+    const randomLeft =
+        Math.random() * 85 + 5;
 
-    flower.style.left = randomLeft + "%";
+    flower.style.left =
+        randomLeft + "%";
 
     flower.style.bottom =
         Math.random() * 25 + 15 + "px";
@@ -65,7 +95,10 @@ function createFlower() {
 }
 
 
-// 💧 Water the garden
+// ================================
+// 💧 WATER THE GARDEN
+// ================================
+
 waterBtn.addEventListener("click", () => {
 
     if (flowers === 0) {
@@ -85,12 +118,16 @@ waterBtn.addEventListener("click", () => {
 });
 
 
-// ✨ Create water sparkles
+// ================================
+// ✨ WATER SPARKLES
+// ================================
+
 function createSparkles() {
 
     for (let i = 0; i < 8; i++) {
 
-        const sparkle = document.createElement("div");
+        const sparkle =
+            document.createElement("div");
 
         sparkle.classList.add("sparkle");
 
@@ -105,16 +142,22 @@ function createSparkles() {
         gardenArea.appendChild(sparkle);
 
         setTimeout(() => {
+
             sparkle.remove();
+
         }, 1200);
     }
 }
 
 
-// 🌱 Update progress
+// ================================
+// 🌱 UPDATE PROGRESS
+// ================================
+
 function updateProgress() {
 
-    const percentage = flowers * 10;
+    const percentage =
+        flowers * 10;
 
     progressFill.style.width =
         percentage + "%";
@@ -122,6 +165,8 @@ function updateProgress() {
     progressText.textContent =
         `${flowers} / 10 🌸`;
 
+
+    // 🦋 First butterfly
 
     if (flowers === 3) {
 
@@ -131,6 +176,9 @@ function updateProgress() {
         createButterfly();
     }
 
+
+    // 🦋 Second butterfly
+
     if (flowers === 5) {
 
         gardenMessage.textContent =
@@ -138,6 +186,9 @@ function updateProgress() {
 
         createButterfly();
     }
+
+
+    // 🦋 Third butterfly
 
     if (flowers === 8) {
 
@@ -147,6 +198,9 @@ function updateProgress() {
         createButterfly();
     }
 
+
+    // 🌸 Complete garden
+
     if (flowers === 10) {
 
         gardenMessage.textContent =
@@ -154,35 +208,105 @@ function updateProgress() {
     }
 }
 
-// 🦋 Create a butterfly
+
+// ================================
+// 🦋 CREATE BUTTERFLY
+// ================================
+
 function createButterfly() {
 
     butterflies++;
 
-    const butterfly = document.createElement("div");
+    const butterfly =
+        document.createElement("div");
 
     butterfly.classList.add("butterfly");
 
     butterfly.textContent = "🦋";
 
-    // Random starting position
     butterfly.style.left =
         Math.random() * 75 + 10 + "%";
 
     butterfly.style.top =
         Math.random() * 45 + 15 + "%";
 
-    // Different flight duration
     butterfly.style.animationDuration =
         Math.random() * 3 + 4 + "s";
 
     gardenArea.appendChild(butterfly);
 }
 
-// 🌷 Enter the garden
+
+// ================================
+// 🌷 ENTER THE GARDEN
+// ================================
 
 enterGarden.addEventListener("click", () => {
 
     openingScreen.classList.add("hide");
 
 });
+
+
+// ================================
+// 🐈 RANDOM CAT VISITS
+// ================================
+
+function catVisit() {
+
+    // Make sure the cat starts fresh
+
+    gardenCat.classList.remove(
+        "walk-right",
+        "walk-left"
+    );
+
+
+    // 🐈 ALWAYS WALK RIGHT → LEFT
+
+    gardenCat.classList.add("walk-left");
+
+
+    // Wait until the cat finishes walking
+
+    setTimeout(() => {
+
+        gardenCat.classList.remove(
+            "walk-left"
+        );
+
+    }, 8000);
+
+
+    // Schedule another visit
+
+    scheduleNextCat();
+}
+
+
+// ================================
+// ⏰ RANDOM CAT TIMING
+// ================================
+
+function scheduleNextCat() {
+
+    // Random delay between 10 and 25 seconds
+
+    const randomDelay =
+        Math.floor(
+            Math.random() * 15000
+        ) + 10000;
+
+
+    setTimeout(
+        catVisit,
+        randomDelay
+    );
+}
+
+
+// ================================
+// 🐾 START CAT SYSTEM
+// ================================
+
+scheduleNextCat();
