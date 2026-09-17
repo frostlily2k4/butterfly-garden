@@ -763,3 +763,231 @@ footer {
         left: -80px;
     }
 }
+
+/* ========================================
+   🌸 GARDEN MOOD
+   ======================================== */
+
+.mood-section {
+    margin: 25px 0;
+    padding: 25px 20px;
+
+    background: rgba(255, 255, 255, 0.55);
+
+    border: 1px solid rgba(255, 255, 255, 0.75);
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 10px 30px rgba(120, 90, 130, 0.08);
+}
+
+
+/* 🌷 Mood heading */
+
+.mood-title {
+    font-family: 'Playfair Display', serif;
+
+    font-size: 23px;
+
+    color: #76607d;
+
+    margin-bottom: 6px;
+}
+
+
+.mood-subtitle {
+    font-size: 14px;
+
+    color: #9a8fa0;
+
+    margin-bottom: 20px;
+}
+
+
+/* 🌸 Mood buttons */
+
+.mood-options {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+
+.mood-btn {
+    width: 105px;
+    min-height: 90px;
+
+    padding: 12px 8px;
+
+    border-radius: 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    background: rgba(255, 255, 255, 0.75);
+
+    border: 2px solid transparent;
+
+    color: #7d6684;
+
+    box-shadow:
+        0 6px 15px rgba(100, 80, 110, 0.08);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+
+.mood-btn:hover {
+    transform: translateY(-4px);
+
+    background: #fff;
+
+    border-color: #e4c3d9;
+}
+
+
+.mood-btn.selected {
+    transform: translateY(-4px);
+
+    background: #fff5fa;
+
+    border-color: #d99abb;
+
+    box-shadow:
+        0 8px 20px rgba(190, 130, 165, 0.18);
+}
+
+
+/* 🌷 Mood icon */
+
+.mood-icon {
+    font-size: 30px;
+
+    line-height: 1;
+}
+
+
+/* 💌 Mood message */
+
+.mood-message {
+    margin-top: 20px;
+
+    padding: 12px 15px;
+
+    border-radius: 15px;
+
+    background: rgba(250, 240, 248, 0.7);
+
+    color: #8a718e;
+
+    font-size: 14px;
+
+    font-style: italic;
+
+    transition: all 0.3s ease;
+}
+
+
+/* 🌙 Night mode compatibility */
+
+body.night .mood-section {
+    background: rgba(35, 28, 55, 0.75);
+
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+
+body.night .mood-title {
+    color: #eee3f5;
+}
+
+
+body.night .mood-subtitle {
+    color: #cfc2da;
+}
+
+
+body.night .mood-btn {
+    background: rgba(255, 255, 255, 0.08);
+
+    color: #f7eefa;
+}
+
+
+body.night .mood-btn:hover,
+body.night .mood-btn.selected {
+    background: rgba(255, 255, 255, 0.15);
+
+    border-color: #d99abb;
+}
+
+
+body.night .mood-message {
+    background: rgba(255, 255, 255, 0.08);
+
+    color: #d8c9df;
+}
+
+
+/* 📱 Mobile */
+
+@media (max-width: 600px) {
+
+    .mood-options {
+        gap: 10px;
+    }
+
+    .mood-btn {
+        width: 90px;
+        min-height: 85px;
+    }
+
+    .mood-title {
+        font-size: 20px;
+    }
+}
+
+/* ✨ Dreamy Mood Stars */
+
+.mood-stars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 4;
+}
+
+.mood-stars span {
+    position: absolute;
+    color: #fff3bd;
+    font-size: 14px;
+
+    animation: moodStarTwinkle 2s ease-in-out infinite;
+}
+
+@keyframes moodStarTwinkle {
+
+    0%, 100% {
+        opacity: 0.2;
+        transform: scale(0.7);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}

@@ -25,6 +25,12 @@ const enterGarden = document.getElementById("enterGarden");
 const gardenCat = document.getElementById("gardenCat");
 
 
+// 🌸 Mood Elements
+
+const moodButtons = document.querySelectorAll(".mood-btn");
+const moodMessage = document.getElementById("moodMessage");
+
+
 // ================================
 // 🌱 GARDEN VARIABLES
 // ================================
@@ -166,8 +172,6 @@ function updateProgress() {
         `${flowers} / 10 🌸`;
 
 
-    // 🦋 First butterfly
-
     if (flowers === 3) {
 
         gardenMessage.textContent =
@@ -176,8 +180,6 @@ function updateProgress() {
         createButterfly();
     }
 
-
-    // 🦋 Second butterfly
 
     if (flowers === 5) {
 
@@ -188,8 +190,6 @@ function updateProgress() {
     }
 
 
-    // 🦋 Third butterfly
-
     if (flowers === 8) {
 
         gardenMessage.textContent =
@@ -198,8 +198,6 @@ function updateProgress() {
         createButterfly();
     }
 
-
-    // 🌸 Complete garden
 
     if (flowers === 10) {
 
@@ -254,20 +252,15 @@ enterGarden.addEventListener("click", () => {
 
 function catVisit() {
 
-    // Make sure the cat starts fresh
-
     gardenCat.classList.remove(
         "walk-right",
         "walk-left"
     );
 
-
-    // 🐈 ALWAYS WALK RIGHT → LEFT
+    // 🐈 Always walk RIGHT → LEFT
 
     gardenCat.classList.add("walk-left");
 
-
-    // Wait until the cat finishes walking
 
     setTimeout(() => {
 
@@ -277,8 +270,6 @@ function catVisit() {
 
     }, 8000);
 
-
-    // Schedule another visit
 
     scheduleNextCat();
 }
@@ -297,7 +288,6 @@ function scheduleNextCat() {
             Math.random() * 15000
         ) + 10000;
 
-
     setTimeout(
         catVisit,
         randomDelay
@@ -310,3 +300,124 @@ function scheduleNextCat() {
 // ================================
 
 scheduleNextCat();
+
+
+// ================================
+// 🌸 GARDEN MOOD
+// ================================
+
+moodButtons.forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+        // Remove previous selection
+
+        moodButtons.forEach((btn) => {
+            btn.classList.remove("selected");
+        });
+
+
+        // Select current mood
+
+        button.classList.add("selected");
+
+
+        const mood =
+            button.dataset.mood;
+
+
+        // 🌸 HAPPY
+
+        if (mood === "happy") {
+
+            moodMessage.textContent =
+                "Your garden is blooming with happiness! 🌸✨";
+
+            gardenMessage.textContent =
+                "A little happiness makes everything brighter. 🌷";
+
+            createSparkles();
+        }
+
+
+        // 🌿 PEACEFUL
+
+        if (mood === "peaceful") {
+
+            moodMessage.textContent =
+                "Take a slow breath. Let your garden be peaceful. 🌿";
+
+            gardenMessage.textContent =
+                "Breathe in... breathe out... enjoy your garden. 🌿💗";
+        }
+
+
+        // 🌧️ SLEEPY
+
+        if (mood === "sleepy") {
+
+            moodMessage.textContent =
+                "It's okay to slow down and rest for a while. 🌧️💤";
+
+            gardenMessage.textContent =
+                "Even little gardens need quiet moments. 🌱💤";
+        }
+
+
+        // 🌙 DREAMY
+
+        if (mood === "dreamy") {
+
+            moodMessage.textContent =
+                "Let your imagination wander among the stars. 🌙✨";
+
+            gardenMessage.textContent =
+                "Your garden is dreaming tonight... 🌙🦋";
+
+            createStars();
+        }
+
+    });
+
+});
+
+
+// ================================
+// ✨ CREATE MOOD STARS
+// ================================
+
+function createStars() {
+
+    if (document.querySelector(".mood-stars")) {
+        return;
+    }
+
+
+    const stars =
+        document.createElement("div");
+
+    stars.classList.add("mood-stars");
+
+
+    for (let i = 0; i < 12; i++) {
+
+        const star =
+            document.createElement("span");
+
+        star.textContent = "✦";
+
+        star.style.left =
+            Math.random() * 90 + "%";
+
+        star.style.top =
+            Math.random() * 70 + "%";
+
+        star.style.animationDelay =
+            Math.random() * 2 + "s";
+
+        stars.appendChild(star);
+    }
+
+
+    gardenArea.appendChild(stars);
+}
