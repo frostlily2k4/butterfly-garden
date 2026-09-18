@@ -375,6 +375,7 @@ moodButtons.forEach((button) => {
                 "Your garden is dreaming tonight... 🌙🦋";
 
             createStars();
+            createFireflies();
         }
 
     });
@@ -420,4 +421,56 @@ function createStars() {
 
 
     gardenArea.appendChild(stars);
+}
+
+// ================================
+// ✨ FIREFLY MAGIC
+// ================================
+
+function createFireflies() {
+
+    // Don't create them again
+    if (document.querySelector(".firefly-container")) {
+        return;
+    }
+
+    const container = document.createElement("div");
+    container.classList.add("firefly-container");
+
+    gardenArea.appendChild(container);
+
+    // Create 12 fireflies
+    for (let i = 0; i < 12; i++) {
+
+        const firefly = document.createElement("div");
+
+        firefly.classList.add("firefly");
+
+        // Random starting position
+        firefly.style.left =
+            Math.random() * 90 + 5 + "%";
+
+        firefly.style.top =
+            Math.random() * 65 + 15 + "%";
+
+        // Different sizes
+        const size =
+            Math.random() * 4 + 5;
+
+        firefly.style.width =
+            size + "px";
+
+        firefly.style.height =
+            size + "px";
+
+        // Different animation speeds
+        firefly.style.animationDuration =
+            Math.random() * 3 + 4 + "s";
+
+        // Random animation delay
+        firefly.style.animationDelay =
+            Math.random() * 3 + "s";
+
+        container.appendChild(firefly);
+    }
 }

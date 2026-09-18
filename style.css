@@ -991,3 +991,67 @@ body.night .mood-message {
         transform: scale(1.2);
     }
 }
+
+/* ================================
+   ✨ FIREFLIES
+================================ */
+
+.firefly {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    background: #fff7a8;
+    border-radius: 50%;
+    z-index: 6;
+    pointer-events: none;
+
+    box-shadow:
+        0 0 6px #fff7a8,
+        0 0 14px #fff7a8,
+        0 0 22px rgba(255, 247, 168, 0.8);
+
+    animation:
+        fireflyFloat 5s ease-in-out infinite,
+        fireflyGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes fireflyFloat {
+
+    0% {
+        transform: translate(0, 0);
+    }
+
+    25% {
+        transform: translate(25px, -30px);
+    }
+
+    50% {
+        transform: translate(-20px, -55px);
+    }
+
+    75% {
+        transform: translate(35px, -20px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes fireflyGlow {
+
+    0% {
+        opacity: 0.25;
+        box-shadow:
+            0 0 4px #fff7a8,
+            0 0 8px #fff7a8;
+    }
+
+    100% {
+        opacity: 1;
+        box-shadow:
+            0 0 8px #fff7a8,
+            0 0 18px #fff7a8,
+            0 0 28px rgba(255, 247, 168, 0.9);
+    }
+}
