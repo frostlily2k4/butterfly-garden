@@ -1,6 +1,5 @@
 // 🌸 Butterfly Garden
 
-
 // ================================
 // 🌷 GET HTML ELEMENTS
 // ================================
@@ -13,22 +12,22 @@ const progressFill = document.querySelector(".progress-fill");
 const progressText = document.querySelector(".progress span");
 const gardenMessage = document.querySelector(".garden-message");
 
-
 // 🌌 Opening Screen
-
 const openingScreen = document.getElementById("openingScreen");
 const enterGarden = document.getElementById("enterGarden");
 
-
 // 🐈 Cat
-
 const gardenCat = document.getElementById("gardenCat");
 
-
-// 🌸 Mood Elements
-
+// 🌸 Mood
 const moodButtons = document.querySelectorAll(".mood-btn");
 const moodMessage = document.getElementById("moodMessage");
+
+// 💌 Journal
+const journalInput = document.getElementById("journalInput");
+const saveJournalBtn = document.getElementById("saveJournalBtn");
+const clearJournalBtn = document.getElementById("clearJournalBtn");
+const journalEntry = document.getElementById("journalEntry");
 
 
 // ================================
@@ -259,8 +258,9 @@ function catVisit() {
 
     // 🐈 Always walk RIGHT → LEFT
 
-    gardenCat.classList.add("walk-left");
-
+    gardenCat.classList.add(
+        "walk-left"
+    );
 
     setTimeout(() => {
 
@@ -269,7 +269,6 @@ function catVisit() {
         );
 
     }, 8000);
-
 
     scheduleNextCat();
 }
@@ -310,17 +309,17 @@ moodButtons.forEach((button) => {
 
     button.addEventListener("click", () => {
 
-        // Remove previous selection
-
         moodButtons.forEach((btn) => {
-            btn.classList.remove("selected");
+
+            btn.classList.remove(
+                "selected"
+            );
+
         });
 
-
-        // Select current mood
-
-        button.classList.add("selected");
-
+        button.classList.add(
+            "selected"
+        );
 
         const mood =
             button.dataset.mood;
@@ -372,9 +371,10 @@ moodButtons.forEach((button) => {
                 "Let your imagination wander among the stars. 🌙✨";
 
             gardenMessage.textContent =
-                "Your garden is dreaming tonight... 🌙🦋";
+                "Your garden is dreaming tonight... 🌙🦋✨";
 
             createStars();
+
             createFireflies();
         }
 
@@ -389,16 +389,21 @@ moodButtons.forEach((button) => {
 
 function createStars() {
 
-    if (document.querySelector(".mood-stars")) {
+    if (
+        document.querySelector(
+            ".mood-stars"
+        )
+    ) {
+
         return;
     }
-
 
     const stars =
         document.createElement("div");
 
-    stars.classList.add("mood-stars");
-
+    stars.classList.add(
+        "mood-stars"
+    );
 
     for (let i = 0; i < 12; i++) {
 
@@ -419,41 +424,60 @@ function createStars() {
         stars.appendChild(star);
     }
 
-
     gardenArea.appendChild(stars);
 }
 
+
 // ================================
-// ✨ FIREFLY MAGIC
+// ✨ CREATE FIREFLIES
 // ================================
 
 function createFireflies() {
 
-    // Don't create them again
-    if (document.querySelector(".firefly-container")) {
+    if (
+        document.querySelector(
+            ".firefly-container"
+        )
+    ) {
+
         return;
     }
 
-    const container = document.createElement("div");
-    container.classList.add("firefly-container");
+    const container =
+        document.createElement("div");
 
-    gardenArea.appendChild(container);
+    container.classList.add(
+        "firefly-container"
+    );
+
+    gardenArea.appendChild(
+        container
+    );
+
 
     // Create 12 fireflies
+
     for (let i = 0; i < 12; i++) {
 
-        const firefly = document.createElement("div");
+        const firefly =
+            document.createElement("div");
 
-        firefly.classList.add("firefly");
+        firefly.classList.add(
+            "firefly"
+        );
 
-        // Random starting position
+
+        // Random position
+
         firefly.style.left =
             Math.random() * 90 + 5 + "%";
 
         firefly.style.top =
             Math.random() * 65 + 15 + "%";
 
-        // Different sizes
+
+        // Random size
+
         const size =
             Math.random() * 4 + 5;
 
@@ -463,14 +487,128 @@ function createFireflies() {
         firefly.style.height =
             size + "px";
 
-        // Different animation speeds
+
+        // Random speed
+
         firefly.style.animationDuration =
             Math.random() * 3 + 4 + "s";
 
-        // Random animation delay
+
+        // Random delay
+
         firefly.style.animationDelay =
             Math.random() * 3 + "s";
 
-        container.appendChild(firefly);
+
+        container.appendChild(
+            firefly
+        );
     }
+}
+
+
+// ================================
+// 💌 GARDEN JOURNAL
+// ================================
+
+
+// 🌸 Save Journal Note
+
+saveJournalBtn.addEventListener(
+    "click",
+    () => {
+
+        const note =
+            journalInput.value.trim();
+
+
+        // Don't save empty notes
+
+        if (note === "") {
+
+            journalEntry.textContent =
+                "Write a little something first... 💗";
+
+            journalEntry.classList.add(
+                "show"
+            );
+
+            return;
+        }
+
+
+        // Display the journal entry
+
+        journalEntry.textContent =
+            `“${note}” 💗`;
+
+
+        journalEntry.classList.add(
+            "show"
+        );
+
+
+        // Save to browser
+
+        localStorage.setItem(
+            "butterflyGardenJournal",
+            note
+        );
+
+
+        // Update garden message
+
+        gardenMessage.textContent =
+            "Your little memory has been saved in the garden. 🌷💌";
+    }
+);
+
+
+// 🗑️ Clear Journal
+
+clearJournalBtn.addEventListener(
+    "click",
+    () => {
+
+        journalInput.value = "";
+
+        journalEntry.textContent = "";
+
+        journalEntry.classList.remove(
+            "show"
+        );
+
+
+        localStorage.removeItem(
+            "butterflyGardenJournal"
+        );
+
+
+        gardenMessage.textContent =
+            "Your journal is ready for a new memory. 🌱💗";
+    }
+);
+
+
+// ================================
+// 💾 LOAD SAVED JOURNAL NOTE
+// ================================
+
+const savedJournal =
+    localStorage.getItem(
+        "butterflyGardenJournal"
+    );
+
+
+if (savedJournal) {
+
+    journalInput.value =
+        savedJournal;
+
+    journalEntry.textContent =
+        `“${savedJournal}” 💗`;
+
+    journalEntry.classList.add(
+        "show"
+    );
 }
